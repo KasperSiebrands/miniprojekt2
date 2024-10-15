@@ -16,7 +16,6 @@ screen = create_window()
 white = (255, 255, 255)
 black = (0, 0, 0)
 
-
 running = True
 
 while running:
