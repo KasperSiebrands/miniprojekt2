@@ -4,18 +4,24 @@ import pygame
 import random
 
 def draw_map(screen):
-    # Definieer kleuren
+
     grass_color = (23, 230, 100)   # Gras
     water_color = (13, 120, 255)    # Water
     mount_color = (160, 160, 160)   # mountain
     snoww_color = (255, 255, 255)     # Snow
     beach_color = (255, 215, 0)       # beach
 
-    # Grootte van de tegels
-    tile_size = 25  
-    width, height = 32, 32  # Aantal tegels in de breedte en hoogte
+   
+    START_COLOR = (245, 32, 98)  # red for start
+    END_COLOR = (23, 49, 235)    #  blue for end
+    start_position = (50, 100)  #start
+    end_position = (725, 675)   #end
 
-    # Hardcoded map-indeling met variatie
+
+    tile_size = 25  
+    width, height = 32, 32   #800 / 25 = 32
+
+    # Hardcoded map
     map_layout = [
         [ 'water', 'water', 'grass', 'grass', 'grass', 'grass', 'snoww', 'snoww', 'snoww', 'grass', 'grass', 'grass', 'grass', 'grass', 'mount', 'grass', 'grass', 'mount', 'grass', 'grass', 'water', 'water', 'water', 'water', 'grass', 'grass', 'grass', 'grass', 'grass', 'snoww', 'snoww', 'snoww'],
         [ 'water', 'water', 'grass', 'grass', 'grass', 'grass', 'snoww', 'snoww', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'mount', 'grass', 'mount', 'grass', 'grass', 'grass', 'water', 'water', 'water', 'water', 'grass', 'grass', 'grass', 'grass', 'grass', 'snoww', 'snoww', 'snoww'],
@@ -66,3 +72,18 @@ def draw_map(screen):
                 pygame.draw.rect(screen, snoww_color, (x * tile_size, y * tile_size, tile_size, tile_size))
             elif terrain_type == 'beach':
                 pygame.draw.rect(screen, beach_color, (x * tile_size, y * tile_size, tile_size, tile_size))
+      
+
+#draw rect start and end
+    pygame.draw.rect(screen, START_COLOR, (start_position[0], start_position[1], 25, 25))
+
+    pygame.draw.rect(screen, END_COLOR, (end_position[0], end_position[1], 25, 25))
+
+    terrain_costs = {
+        'grass': 1,
+        'beach': 2,
+        'snow': 2,
+        'water': 3,
+        'mountains': 5
+    }
+
