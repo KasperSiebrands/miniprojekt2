@@ -1,15 +1,13 @@
-from map_layout import map_layout
+from collections import deque
+from map_layout import map_layout 
 
 def create_grid(map_layout):
 
-    grid = []
+    grid = [] #empty list
 
     for row in map_layout:
         grid.append(row)
+    
+    print(grid)
 
     return grid
-
-grid = create_grid(map_layout)
-
-for row in grid:
-    print(row)
