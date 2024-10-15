@@ -1,6 +1,6 @@
 import pygame 
 import sys    
-
+from map import draw_map  
 
 pygame.init()
 
@@ -31,6 +31,8 @@ while running:
 
  
     screen.fill(white)
+
+    draw_map(screen)
 
 
     pygame.display.update()
