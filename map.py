@@ -1,9 +1,9 @@
 import pygame
-from map_layout import map_layout  # Import the map layout from the new file
+from map_layout import map_layout  
 
 def get_start_end_positions():
 
-    start_position = (50, 100)  # start
+    start_position = (100, 150)  # start
     end_position = (725, 675)   #end
 
     return start_position, end_position
@@ -24,16 +24,19 @@ def get_terrain_costs():
     }
     return terrain_costs
 
+def terrain_tile_size():
+    tile_size = 25
+    return tile_size
+
 def draw_map(screen):
 
-    grass_color = (23, 230, 100)   # Gras
-    water_color = (13, 120, 255)    # Water
+    grass_color = (23, 230, 100)   #grass
+    water_color = (13, 120, 255)    #water
     mount_color = (160, 160, 160)   # mountain
     snoww_color = (255, 255, 255)     # Snow
     beach_color = (255, 215, 0)       # beach
 
-    tile_size = 25  
-    width, height = 32, 32   #800 / 25 = 32
+    size_tile = terrain_tile_size()
 
     start_position, end_position = get_start_end_positions()
     START_COLOR, END_COLOR = start_end_colour()
@@ -42,15 +45,15 @@ def draw_map(screen):
     for y, row in enumerate(map_layout):
         for x, terrain_type in enumerate(row):
             if terrain_type == 'grass':
-                pygame.draw.rect(screen, grass_color, (x * tile_size, y * tile_size, tile_size, tile_size))
+                pygame.draw.rect(screen, grass_color, (x * size_tile, y * size_tile, size_tile, size_tile))
             elif terrain_type == 'water':
-                pygame.draw.rect(screen, water_color, (x * tile_size, y * tile_size, tile_size, tile_size))
+                pygame.draw.rect(screen, water_color, (x * size_tile, y * size_tile, size_tile, size_tile))
             elif terrain_type == 'mount':
-                pygame.draw.rect(screen, mount_color, (x * tile_size, y * tile_size, tile_size, tile_size))
+                pygame.draw.rect(screen, mount_color, (x * size_tile, y * size_tile, size_tile, size_tile))
             elif terrain_type == 'snoww':
-                pygame.draw.rect(screen, snoww_color, (x * tile_size, y * tile_size, tile_size, tile_size))
+                pygame.draw.rect(screen, snoww_color, (x * size_tile, y * size_tile, size_tile, size_tile))
             elif terrain_type == 'beach':
-                pygame.draw.rect(screen, beach_color, (x * tile_size, y * tile_size, tile_size, tile_size))
+                pygame.draw.rect(screen, beach_color, (x * size_tile, y * size_tile, size_tile, size_tile))
       
 
 #draw rect start and end
