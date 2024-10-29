@@ -1,12 +1,28 @@
 import pygame
 from map_layout import map_layout  
+import random
 
+
+def terrain_tile_size():
+    tile_size = 25
+    return tile_size
+
+def get_random_numbers():
+    #generate random x and y numbers
+    start_x = random.choice(range(0, 801, 25)) 
+    start_y = random.choice(range(0, 801, 25))  
+    end_x = random.choice(range(0, 801, 25))  
+    end_y = random.choice(range(0, 801, 25))  
+
+    return start_x, start_y, end_x, end_y
+    
 def get_start_end_positions():
-
-    start_position = (100, 150)  # start
-    end_position = (725, 675)   #end
+    start_x, start_y, end_x, end_y = get_random_numbers()
+    start_position = (start_x, start_y)  #start
+    end_position = (end_x, end_y)  #end
 
     return start_position, end_position
+
 
 def start_end_colour():
     START_COLOR = (245, 32, 98)  #start
@@ -24,11 +40,7 @@ def get_terrain_costs():
     }
     return terrain_costs
 
-def terrain_tile_size():
-    tile_size = 25
-    return tile_size
-
-def draw_map(screen):
+def draw_map(screen, start_position, end_position):
 
     grass_color = (23, 230, 100)   #grass
     water_color = (13, 120, 255)    #water
@@ -37,8 +49,6 @@ def draw_map(screen):
     beach_color = (255, 215, 0)       # beach
 
     size_tile = terrain_tile_size()
-
-    start_position, end_position = get_start_end_positions()
     START_COLOR, END_COLOR = start_end_colour()
 
     # Loop map_layout
@@ -56,9 +66,7 @@ def draw_map(screen):
                 pygame.draw.rect(screen, beach_color, (x * size_tile, y * size_tile, size_tile, size_tile))
       
 
-#draw rect start and end
+    print(f"Start rect: {(start_position[0], start_position[1])}, Eind rect: {(end_position[0], end_position[1])}")
     pygame.draw.rect(screen, START_COLOR, (start_position[0], start_position[1], 25, 25))
-
     pygame.draw.rect(screen, END_COLOR, (end_position[0], end_position[1], 25, 25))
-
 
