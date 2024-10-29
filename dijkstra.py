@@ -50,13 +50,13 @@ class Dijkstra:
         path.reverse()
         return path
 
-    def get_neighbors(node, grid):
+    def get_neighbors(self, node):
         x, y = node #curent node
         neighbors = [] #lists of neigbors
         directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]  #directions; down, right, up, left (is changeable)
         
         for dx, dy in directions:
             neighbor = (x + dx, y + dy) #calculate neighbor coordinates
-            if 0 <= neighbor[0] < len(grid[0]) and 0 <= neighbor[1] < len(grid): #if neighborg is in the grid add to list
+            if 0 <= neighbor[0] < len(self.grid[0]) and 0 <= neighbor[1] < len(self.grid): #if neighborg is in the grid add to list
                 neighbors.append(neighbor)
         return neighbors #return list of neigbors
