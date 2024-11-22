@@ -1,5 +1,6 @@
 import heapq
-from map import get_terrain_costs
+from dancefloor import Grid
+#from map import get_terrain_costs
 
 #mabye looks like much from start, made first a pseudocode on paper. 
 # then drawed it on paper
@@ -11,9 +12,9 @@ class Dijkstra:
     def __init__(self, grid, box_size):
         self.grid = grid 
         self.box_size = box_size  
-        self.terrain_costs = get_terrain_costs()  
+        self.terrain_costs = self.grid.get_terrain_costs()  
 
-    def dijkstra(self, start, goal):
+    def dijkstra_algorithm(self, start, goal):
 
         queue = [] #list to store nodes able to explore...
         heapq.heappush(queue, (0, start))  #startnode with cost 0
