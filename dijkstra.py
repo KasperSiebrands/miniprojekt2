@@ -1,5 +1,5 @@
 import heapq
-from dancefloor import Grid
+from dancefloor import Grid, get_terrain_costs, get_terrain_type
 #from map import get_terrain_costs
 
 #mabye looks like much from start, made first a pseudocode on paper. 
@@ -12,7 +12,7 @@ class Dijkstra:
     def __init__(self, grid, box_size):
         self.grid = grid 
         self.box_size = box_size  
-        self.terrain_costs = self.grid.get_terrain_costs()  
+        self.terrain_costs = get_terrain_costs()  
 
     def dijkstra_algorithm(self, start, goal):
 
@@ -31,8 +31,10 @@ class Dijkstra:
             neighbors = self.get_neighbors(current_node) #neighbors of current node
 
             for neighbor in neighbors:
-                terrain_type = self.grid[neighbor[1]][neighbor[0]]  #what is the terrain type?
-                terrain_cost = self.terrain_costs.get(terrain_type, float('inf'))  #what does terrain cost?
+                x, y = neighbor
+                terrain_type = get_terrain_type(self.grid, x, y)  # Use new method to get terrain
+                terrain_costs = get_terrain_costs()
+                terrain_cost = terrain_costs.get(terrain_type, float('inf'))  #what does terrain cost?
                 new_cost = current_cost + terrain_cost #what is the new cost?
                 
                 #wants cheapest path, keeps checking for cheaper alternatives...
