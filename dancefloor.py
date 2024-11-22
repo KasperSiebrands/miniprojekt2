@@ -13,7 +13,7 @@ COLORS = {
 #settings
 TILE_SIZE = 25  # each tile is 25 pixels
 GRID_SIZE = 32  # window / tilesize = 32
-WINDOW_SIZE = GRID_SIZE * TILE_SIZE # just for now...
+WINDOW_SIZE = GRID_SIZE * TILE_SIZE #change window with tiles and size
 
 
 class Grid:
@@ -38,12 +38,13 @@ class Grid:
         #gererate random start and end point
         self.start = (random.randint(0, self.grid_size - 1), random.randint(0, self.grid_size - 1))
         self.end = (random.randint(0, self.grid_size - 1), random.randint(0, self.grid_size - 1))
-
+  
         #start and end cannot be same
         while self.start == self.end:
             self.end = (random.randint(0, self.grid_size - 1), random.randint(0, self.grid_size - 1))
         
-
+        print("Found start", self.start)
+        print("Found end", self.end)
 
 def get_terrain_costs():
     terrain_costs = {
@@ -60,17 +61,21 @@ def get_terrain_type(grid, x, y):
 
 def draw_grid(screen, grid):
     """draw grid on screen"""
+    #Get start and end positions once to avoid repeating the check in the loop
+    start = grid.start
+    end = grid.end
+
     for row in range(grid.grid_size):
         for col in range(grid.grid_size):
             tile = grid.grid[row][col]
             color = random.choice(COLORS[tile])
 
             #draw start
-            if (row, col) == grid.start:
+            if (row, col) == start:
                 color = COLORS["start"]
                 
             #draw end
-            elif (row, col) == grid.end:
+            elif (row, col) == end:
                 color = COLORS["end"]
 
             #draw a tile
@@ -80,39 +85,3 @@ def draw_grid(screen, grid):
             #draw gridlines
             pygame.draw.rect(screen, (0, 0, 0),  #black lines
                              (col * grid.tile_size, row * grid.tile_size, grid.tile_size, grid.tile_size), 1)
-
-'''
-def main():
-    #intialize pygame
-    pygame.init()
-    screen = pygame.display.set_mode((WINDOW_SIZE, WINDOW_SIZE))
-    pygame.display.set_caption("Dance Floor Map")
-    clock = pygame.time.Clock()
-
-    #generate a grid
-    grid = Grid(GRID_SIZE, TILE_SIZE)
-    grid.generate_grid()
-
-    #fill screen with white
-    screen.fill((255, 255, 255))
-
-    #draw dancefloor
-    draw_grid(screen, grid)
-
-    #update screen
-    pygame.display.flip()
-
-    running = True
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-
-
-
-    pygame.quit()
-
-
-if __name__ == "__main__":
-    main()
-'''
