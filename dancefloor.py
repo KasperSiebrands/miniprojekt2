@@ -3,7 +3,7 @@ import random
 
 #colors
 COLORS = {
-    "person": [(139, 69, 19), (244, 194, 146)], # Brown and blonde
+    "person": [(139, 69, 19), (251,231,161)], # Brown and blonde
     "dancefloor_colour": [(0, 0, 255), (128, 0, 128), (0, 255, 255), (64, 224, 208),(255, 140, 0) ], #blue, purple, cyan, turqoice, orange
     
     "start": (0, 255, 0),  # green
@@ -23,6 +23,7 @@ class Grid:
         self.grid = []
         self.start = None
         self.end = None
+ 
 
     def generate_grid(self):
         #possible terrain types
@@ -41,6 +42,20 @@ class Grid:
         #start and end cannot be same
         while self.start == self.end:
             self.end = (random.randint(0, self.grid_size - 1), random.randint(0, self.grid_size - 1))
+        
+
+
+def get_terrain_costs():
+    terrain_costs = {
+     "person": 1000,
+    "dancefloor_colour": 1
+    }
+    
+    return terrain_costs
+
+def get_terrain_type(grid, x, y):
+    """Returns the terrain type at position (x, y)"""
+    return grid[y][x]  # Accessing the terrain type from the grid
 
 
 def draw_grid(screen, grid):
@@ -66,7 +81,7 @@ def draw_grid(screen, grid):
             pygame.draw.rect(screen, (0, 0, 0),  #black lines
                              (col * grid.tile_size, row * grid.tile_size, grid.tile_size, grid.tile_size), 1)
 
-
+'''
 def main():
     #intialize pygame
     pygame.init()
@@ -100,3 +115,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+'''
