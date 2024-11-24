@@ -3,8 +3,8 @@ import random
 
 #colors
 COLORS = {
-    "person": [(139, 69, 19), (251,231,161)], # Brown and blonde
-    "dancefloor_colour": [(0, 0, 255), (128, 0, 128), (0, 255, 255), (64, 224, 208),(255, 140, 0) ], #blue, purple, cyan, turqoice, orange
+    "person": [(139, 69, 19)], # Brown and blonde
+    "dancefloor_colour": [(0, 0, 255), (128, 0, 128), (0, 255, 255), (64, 224, 208), (173, 216, 230), (255, 255, 0), (128, 0, 128), (144, 238, 144) ], #blue, purple, cyan, turqoice.
     
     "start": (0, 255, 0),  # green
     "end": (255, 0, 0)  # red
@@ -48,7 +48,7 @@ class Grid:
 
 def get_terrain_costs():
     terrain_costs = {
-     "person": 1000,
+    "person": 1000,
     "dancefloor_colour": 1
     }
     
@@ -85,3 +85,4 @@ def draw_grid(screen, grid):
             #draw gridlines
             pygame.draw.rect(screen, (0, 0, 0),  #black lines
                              (col * grid.tile_size, row * grid.tile_size, grid.tile_size, grid.tile_size), 1)
+
