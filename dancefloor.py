@@ -4,7 +4,7 @@ import random
 #colors
 COLORS = {
     "person": [(139, 69, 19)], # Brown and blonde
-    "dancefloor_colour": [(0, 0, 255), (128, 0, 128), (0, 255, 255), (64, 224, 208), (173, 216, 230), (255, 255, 0), (128, 0, 128), (144, 238, 144) ], #blue, purple, cyan, turqoice.
+    "dancefloor_tile": [(0, 0, 255), (128, 0, 128), (0, 255, 255), (64, 224, 208), (173, 216, 230), (255, 255, 0), (128, 0, 128), (144, 238, 144) ], #blue, purple, cyan, turqoice.
     
     "start": (0, 255, 0),  # green
     "end": (255, 0, 0)  # red
@@ -27,7 +27,7 @@ class Grid:
 
     def generate_grid(self):
         #possible terrain types
-        terrain_types = ["person", "dancefloor_colour"]
+        terrain_types = ["person", "dancefloor_tile"]
 
         #radom grid
         self.grid = [
@@ -49,7 +49,7 @@ class Grid:
 def get_terrain_costs():
     terrain_costs = {
     "person": 1000,
-    "dancefloor_colour": 1
+    "dancefloor_tile": 1
     }
     
     return terrain_costs
