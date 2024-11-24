@@ -56,7 +56,7 @@ def get_terrain_costs():
 
 def get_terrain_type(grid, x, y):
     """Returns the terrain type at position (x, y)"""
-    return grid[y][x]  # Accessing the terrain type from the grid
+    return grid[x][y]  # Accessing the terrain type from the grid
 
 
 def draw_grid(screen, grid):
