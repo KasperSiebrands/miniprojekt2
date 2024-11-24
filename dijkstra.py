@@ -14,6 +14,12 @@ class Dijkstra:
         self.box_size = box_size  
         self.terrain_costs = get_terrain_costs()  
 
+    def heuristic(self, node, goal):
+        # Manhattan distance (alternatief: Euclidisch met sqrt((x2-x1)^2 + (y2-y1)^2))
+        x1, y1 = node
+        x2, y2 = goal
+        return abs(x1 - x2) + abs(y1 - y2) 
+
     def dijkstra_algorithm(self, start, goal):
 
         queue = [] #list to store nodes able to explore...
@@ -23,7 +29,8 @@ class Dijkstra:
         previous = {start: None} #stores previous node so able to make a path in the end
         
         while queue: #keeps looping untill no nodes left, while better than for loop because not know left.
-            current_cost, current_node = heapq.heappop(queue)
+            _, current_node = heapq.heappop(queue)
+
 
             if current_node == goal: 
                 break # if the end or better called goal is reached stop looking....
@@ -34,14 +41,15 @@ class Dijkstra:
                 x, y = neighbor
                 terrain_type = get_terrain_type(self.grid, x, y)  # Use new method to get terrain
                 terrain_cost = self.terrain_costs.get(terrain_type, float('inf'))  #what does terrain cost?
-                new_cost = current_cost + terrain_cost #what is the new cost?
+                new_cost = costs[current_node] + terrain_cost #what is the new cost?
                 
                 #wants cheapest path, keeps checking for cheaper alternatives...
                 if neighbor not in costs or new_cost < costs[neighbor]:
                     costs[neighbor] = new_cost #updates costs
-                    previous[neighbor] = current_node #what is the previeuws node
-                    heapq.heappush(queue, (new_cost, neighbor)) #pushes neighbort onto queue
-
+                    priority = new_cost + self.heuristic(neighbor, goal)  # A*: kosten + heuristiek
+                    heapq.heappush(queue, (priority, neighbor))
+                    previous[neighbor] = current_node
+                    
         path = [] #important to keep track
         current = goal
 
@@ -62,6 +70,8 @@ class Dijkstra:
             neighbor = (x + dx, y + dy) #calculate neighbor coordinates
             if 0 <= neighbor[0] < len(self.grid[0]) and 0 <= neighbor[1] < len(self.grid): #if neighborg is in the grid add to list
                 neighbors.append(neighbor)
+                
         return neighbors #return list of neigbors
+        
     
     
