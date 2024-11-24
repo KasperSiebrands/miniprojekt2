@@ -33,8 +33,7 @@ class Dijkstra:
             for neighbor in neighbors:
                 x, y = neighbor
                 terrain_type = get_terrain_type(self.grid, x, y)  # Use new method to get terrain
-                terrain_costs = get_terrain_costs()
-                terrain_cost = terrain_costs.get(terrain_type, float('inf'))  #what does terrain cost?
+                terrain_cost = self.terrain_costs.get(terrain_type, float('inf'))  #what does terrain cost?
                 new_cost = current_cost + terrain_cost #what is the new cost?
                 
                 #wants cheapest path, keeps checking for cheaper alternatives...
@@ -53,6 +52,7 @@ class Dijkstra:
         path.reverse()
         return path
 
+        
     def get_neighbors(self, node):
         x, y = node #curent node
         neighbors = [] #lists of neigbors
@@ -63,3 +63,5 @@ class Dijkstra:
             if 0 <= neighbor[0] < len(self.grid[0]) and 0 <= neighbor[1] < len(self.grid): #if neighborg is in the grid add to list
                 neighbors.append(neighbor)
         return neighbors #return list of neigbors
+    
+    
