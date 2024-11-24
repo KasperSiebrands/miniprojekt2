@@ -9,6 +9,7 @@ def window():
 
     return screen
 
+
 def draw_path(screen, path, tile_size):
     if path:  #check if path is found 
         for i in range(len(path) - 1): 
@@ -18,6 +19,7 @@ def draw_path(screen, path, tile_size):
 
             pygame.draw.line(screen, (255, 140, 0), start_pos, end_pos, 5)  #draws line between start en end point based on values gotten from dijkstra's algoritm
 
+
 def main():
     pygame.init()
     screen = window() #create window
@@ -25,18 +27,19 @@ def main():
      # Create and generate the grid
     grid_object = Grid(GRID_SIZE, TILE_SIZE)
     grid_object.generate_grid()
-
-    # Draw the grid on the screen
-    draw_grid(screen, grid_object)
+  
+    # Initialize Dijkstra
+    dijkstra = Dijkstra(grid_object.grid, TILE_SIZE)
 
     # Calculate the start and goal points
     start = grid_object.start
     goal = grid_object.end
-    
-    # Initialize Dijkstra
-    dijkstra = Dijkstra(grid_object.grid, TILE_SIZE)
     path = dijkstra.dijkstra_algorithm(start, goal)
     print("Found path:", path)
+
+    # Draw the grid on the screen
+    draw_grid(screen, grid_object)
+    draw_path(screen, path, TILE_SIZE)
     
     # Update the screen with the initial grid
     pygame.display.flip()
@@ -54,18 +57,15 @@ def main():
                 grid_object.generate_grid()  # Re-generate the grid
                 start = grid_object.start
                 goal = grid_object.end
+                dijkstra = Dijkstra(grid_object.grid, TILE_SIZE)
                 path = dijkstra.dijkstra_algorithm(start, goal)  # Re-run Dijkstra's algorithm
                 print("Found path:", path)
+
+        	    #redraw
+                screen.fill((0,0,0)) #clear screen
                 draw_grid(screen, grid_object)  # Redraw the grid
                 draw_path(screen, path, TILE_SIZE)  # Redraw the path
-                pygame.display.update()  # Update the display
-
-
-        # Draw the path on the screen
-        draw_path(screen, path, TILE_SIZE)
-
-        # Update the display
-        pygame.display.update()
+                pygame.display.flip()  # Update the display
 
     pygame.quit()
     sys.exit()
