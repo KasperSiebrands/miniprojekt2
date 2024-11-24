@@ -1,11 +1,5 @@
 import heapq
-from dancefloor import Grid, get_terrain_costs, get_terrain_type
-#from map import get_terrain_costs
-
-#mabye looks like much from start, made first a pseudocode on paper. 
-# then drawed it on paper
-#then gave it a try in code and worked first try.... ups....
-
+from helpers import	get_terrain_costs, get_terrain_type
 
 class Astar:
 
