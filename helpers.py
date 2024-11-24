@@ -20,8 +20,8 @@ def get_terrain_type(grid, x, y):
 def draw_grid(screen, grid, tile_colors):
     """draw grid on screen"""
     #Get start and end positions once to avoid repeating the check in the loop
-    start = grid.start
-    end = grid.end
+    start = grid.route_start
+    end = grid.route_end
 
     for row in range(grid.grid_size):
         for col in range(grid.grid_size):
@@ -44,4 +44,18 @@ def draw_grid(screen, grid, tile_colors):
             pygame.draw.rect(screen, (0, 0, 0),  #black lines
                              (col * grid.tile_size, row * grid.tile_size, grid.tile_size, grid.tile_size), 1)
 
+def window(x_size, y_size, title):
+    screen = pygame.display.set_mode((x_size, y_size))  
+    pygame.display.set_caption(title)  
+    return screen
 
+
+def draw_path(screen, path, tile_size):
+    if path:  #check if path is found 
+
+        for i in range(len(path) - 1): 
+            start_pos = (path[i][1] * tile_size + tile_size // 2, path[i][0] * tile_size + tile_size // 2)
+            end_pos = (path[i + 1][1] * tile_size + tile_size // 2, path[i + 1][0] * tile_size + tile_size // 2 )
+
+            pygame.draw.line(screen, (255, 140, 0), start_pos, end_pos, 5)  #draws line between start en end point based on values gotten from dijkstra's algoritm
+            

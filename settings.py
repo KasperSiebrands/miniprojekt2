@@ -23,3 +23,4 @@ COLORS = {
 TILE_SIZE = 25  # each tile is 25 pixels
 GRID_SIZE = 32  # window / tilesize = 32
 WINDOW_SIZE = GRID_SIZE * TILE_SIZE #change window with tiles and size
+TITLE = "mini project 2 dancefloor"
