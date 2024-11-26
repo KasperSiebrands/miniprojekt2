@@ -1,10 +1,10 @@
 """
-central file for settings
+central file for settings / constants
 """
 
 #colors
 COLORS = {
-    "person": [(139, 69, 19)], # Brown
+    "person": [(139, 69, 19)], # Brown (hair)
     "dancefloor_tile": [
         (0, 0, 255), 
         (128, 0, 128), 
@@ -19,7 +19,7 @@ COLORS = {
     "end": (255, 0, 0)  # red
 }
 
-#settings
+#window settings
 TILE_SIZE = 25  # each tile is 25 pixels
 GRID_SIZE = 32  # window / tilesize = 32
 WINDOW_SIZE = GRID_SIZE * TILE_SIZE #change window with tiles and size
