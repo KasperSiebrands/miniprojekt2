@@ -15,8 +15,8 @@ COLORS = {
         (128, 0, 128),
         (144, 238, 144)
     ], #dancefloor colours
-    "start": (0, 255, 0),  # green
-    "end": (255, 0, 0)  # red
+    "start": (0, 255, 0),  # green, is you
+    "end": (255, 0, 0)  # red, is yout best friend (you want to go here!)
 }
 
 #window settings
