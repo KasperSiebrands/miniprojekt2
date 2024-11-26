@@ -2,7 +2,7 @@ import heapq
 from helpers import	get_terrain_costs, get_terrain_type
 
 class Astar:
-
+    
     def __init__(self, grid, box_size):
         self.grid = grid 
         self.box_size = box_size  
@@ -16,7 +16,7 @@ class Astar:
 
     def astar_algorithm(self, start, goal):
 
-        queue = [] #list to store nodes able to explore...
+        queue = [] #list to store nodes able to explore....
         heapq.heappush(queue, (0, start))  #startnode with cost 0
         
         costs = {start: 0} #calculates or tracks costs to reach node...
